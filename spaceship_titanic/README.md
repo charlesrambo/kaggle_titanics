@@ -15,15 +15,15 @@ This sub-repository contains a high-precision machine learning pipeline designed
 
 Standard models often struggle with local spatial patterns. By auditing error clusters, this project identifies and flags specific hull locations:
 
-* **`BowAnomaly` & `StarboardScrape**`: Binary flags representing high-risk coordinates where the global "luxury/safety" correlation breaks down.
+* `BowAnomaly` & `StarboardScrape`: Binary flags representing high-risk coordinates where the global "luxury/safety" correlation breaks down.
 * **The Spender Variable**: An interaction feature targeting passengers above the ** median** amenities spend located specifically within anomaly zones. This corrects for the model's tendency to overestimate the "survival shield" of high-spending passengers in breach areas.
 
 ### 2. Model Auditing & Confidence Analysis
 
 To move beyond a simple accuracy score, the **`spaceship_titanic_utils_v2.py`** provides diagnostic visualizations:
 
-* **`plot_confidence_audit`**: Generates a normalized probability density plot (KDE) to visualize class separation. This allows for the identification of "High Confidence Failures"—instances where the model is certain but incorrect.
-* **`plot_feature_bias_audit`**: Bins continuous variables (like `Amenities` or `Age`) and calculates accuracy per bin to detect if the model is systematically biased against specific demographics.
+* `plot_confidence_audit`: Generates a normalized probability density plot (KDE) to visualize class separation. This allows for the identification of "High Confidence Failures"—instances where the model is certain but incorrect.
+* `plot_feature_bias_audit`: Bins continuous variables (like `Amenities` or `Age`) and calculates accuracy per bin to detect if the model is systematically biased against specific demographics.
 
 ### 3. Social Consensus (Group Nudging)
 
