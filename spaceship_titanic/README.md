@@ -31,7 +31,7 @@ The dataset shows a high **Normalized Mutual Information (NMI)** between the `Gr
 
 * It calculates the transport rate of groups within the training set.
 * It identifies "Test" passengers belonging to these same groups.
-* It applies a ** probability nudge** to align test predictions with the proven outcome of their social group, effectively utilizing local consensus to refine individual probabilities.
+* It applies a **probability nudge** to align test predictions with the proven outcome of their social group, effectively utilizing local consensus to refine individual probabilities.
 
 ### 4. Optuna Optimization
 
