@@ -31,7 +31,7 @@ To model the physical difficulty of reaching the lifeboats, the script includes 
 
 The pipeline uses a **`StackingClassifier`** to reduce variance and capture diverse signals:
 
-* **Base Learners**: Random Forest (robustness), XGBoost (gradient boosting), and CatBoost (categorical handling).
+* **Base Learners**: Support Vector Machine (diversity), Random Forest (robustness), XGBoost (gradient boosting), and CatBoost (categorical handling).
 * **Meta-Learner**: Logistic Regression is used to find the optimal weighted blend of the base learners' probabilities.
 * **Tuning**: Uses **`BayesSearchCV`** (Scikit-Optimize) to perform a 50-iteration search through the hyperparameter space for each model.
 
