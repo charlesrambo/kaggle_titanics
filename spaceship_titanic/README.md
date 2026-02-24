@@ -15,7 +15,7 @@ This sub-repository contains a high-precision machine learning pipeline designed
 
 Standard models often struggle with local spatial patterns. By auditing error clusters, this project identifies and flags specific hull locations:
 
-* `BowAnomaly` & `StarboardScrape`: Binary flags representing high-risk coordinates where the global "luxury/safety" correlation breaks down.
+* **`BowAnomaly` & `StarboardScrape`**: Binary flags representing high-risk coordinates where the global "luxury/safety" correlation breaks down.
 * **The Spender Variable**: An interaction feature targeting passengers above the ** median** amenities spend located specifically within anomaly zones. This corrects for the model's tendency to overestimate the "survival shield" of high-spending passengers in breach areas.
 
 ### 2. Model Auditing & Confidence Analysis
