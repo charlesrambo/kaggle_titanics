@@ -23,7 +23,7 @@ This project focuses on predicting passenger survival using historical manifest 
 ### Code Details
 
 * **titanic_Rambo.py**:
-* **Model Architecture**: Implements a `StackingClassifier` with a Logistic Regression meta-learner. Base estimators include Support Vector Machine Classifier, Random Forest, XGBoost, and CatBoost.
+* **Model Architecture**: Implements a `StackingClassifier` with a Logistic Regression meta-learner. Base estimators include Support Vector Machine, Random Forest, XGBoost, and CatBoost.
 * **Optimization**: Uses `BayesSearchCV` for hyperparameter tuning across the ensemble members.
 
 
@@ -45,7 +45,7 @@ This project addresses an interdimensional transport event, focusing on spatial 
 * **spaceship_titanic_v2.py**:
 * **Model Architecture**: A standalone `CatBoostClassifier` utilizing its native handling of categorical features.
 * **Optimization**: Implements an `OptunaSearchCV` pipeline for automated hyperparameter tuning (learning rate, depth, l2_leaf_reg).
-* **Feature Engineering**: Incorporates binary features for **BowAnomaly** and **StarboardScrape**, along with interaction terms for high-spenders (based on a ** median** threshold) in risk zones.
+* **Feature Engineering**: Incorporates binary features for **BowAnomaly** and **StarboardScrape**, along with interaction terms for high-spenders (based on a **median** threshold) in risk zones.
 
 
 * **spaceship_titanic_utils_v2.py**:
