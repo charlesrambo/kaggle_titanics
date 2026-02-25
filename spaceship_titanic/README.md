@@ -15,8 +15,7 @@ This sub-repository contains a high-precision machine learning pipeline designed
 
 Standard models often struggle with local spatial patterns. By auditing error clusters, this project identifies and flags specific hull locations:
 
-* **`BowAnomaly` & `StarboardScrape`**: Binary flags representing high-risk coordinates where the global "luxury/safety" correlation breaks down.
-* **The Spender Variable**: An interaction feature targeting passengers above the **median** amenities spend located specifically within anomaly zones. This corrects for the model's tendency to overestimate the "survival shield" of high-spending passengers in breach areas.
+* **`BowAnomaly` & `StarboardScrape`**: Binary flags representing specific hull coordinates where spatial damage overrides the predictive power of spending patterns.
 
 ### 2. Model Auditing & Confidence Analysis
 
@@ -29,8 +28,8 @@ To move beyond a simple accuracy score, the **`spaceship_titanic_utils_v2.py`** 
 
 The dataset shows a high **Normalized Mutual Information (NMI)** between the `Group` ID and the target variable. The **`apply_spaceship_group_mask`** leverages this:
 
-* It calculates the transport rate of groups within the training set.
-* It identifies "Test" passengers belonging to these same groups.
+* It calculates the transport rate of groups using the training set's transported feature and the test set's (bias corrected ) ML probability of being transported.
+* It identifies "Test" passengers belonging to groups that have high or low transportation rates.
 * It applies a **probability nudge** to align test predictions with the proven outcome of their social group, effectively utilizing local consensus to refine individual probabilities.
 
 ### 4. Optuna Optimization
