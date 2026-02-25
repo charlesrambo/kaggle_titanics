@@ -644,11 +644,17 @@ def apply_spaceship_group_mask(train_df, test_df, pred_probas, upper = 0.9,
     # Add the probabilites to test_df
     test_df['Transported'] = pred_probas
     
+    # Adjust mean so it's the same as in the training set
+    test_df['Transported'] *= train_df['Transported'].mean()/test_df['Transported'].mean()
+    
+    # Clip so that results are between 0 and 1
+    test_df['Transported'] = test_df['Transported'].clip(0, 1)
+    
     # Combine the results
     df = pd.concat([train_df, test_df], axis = 0)
     
     # Calculate transport stats per group from Training Data
-    group_stats = df.groupby('Group')['Transported'].transform('mean').fillna(0.5)
+    group_stats = df.groupby('Group')['Transported'].transform('mean')
     
     # Force Transported if group mean was 1
     mask_transported = (group_stats > upper) & (df['GroupSize'] > 1)

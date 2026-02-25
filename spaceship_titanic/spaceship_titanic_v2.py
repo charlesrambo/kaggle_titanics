@@ -42,8 +42,8 @@ start_time = time.perf_counter()
 random_state = 0 
 
 # Load in data
-temp1 = pd.read_csv(r'C:\Users\cramb\OneDrive\Desktop\Kaggle\Spaceship Titanic\train.csv')
-temp2 = pd.read_csv(r'C:\Users\cramb\OneDrive\Desktop\Kaggle\Spaceship Titanic\test.csv')
+temp1 = pd.read_csv('train.csv')
+temp2 = pd.read_csv('test.csv')
 
 # Concatenate data sets
 titanic = pd.concat([temp1, temp2], ignore_index = True)
@@ -238,10 +238,6 @@ titanic['StarboardScrape'] = (
                             ((titanic['Deck'] == 'G') & titanic['CabinBlock'].between(25, 30))
                             ).astype(int)
 
-# Create a feature that interacts between amenities and the anomalies
-titanic['LuxuryTrap'] = (titanic['BowAnomaly']|titanic['StarboardScrape']
-                                ) & (titanic['Amenities'] > titanic['Amenities'].median())
-
 # Create normalized mutual information data frame
 nmi_df = utils.create_nmi_df(titanic)  
 
@@ -251,6 +247,8 @@ sns.heatmap(nmi_df, annot = True, cmap = 'coolwarm', fmt = '0.2f')
 
 plt.title('Normalized Mutual Information Final')
 
+plt.savefig('nmi.png')
+
 plt.show()
 
 # Define the variables
@@ -258,8 +256,7 @@ num_vars = ['Age', 'Amenities', 'CabinBlock', 'FoodCourt', 'GroupSize',
             'MedianAge', 'NumMissing', 'NumMissingAmenities', 'RoomService', 
             'ShoppingMall',  'Spa', 'VRDeck']
 cat_vars = ['Deck', 'Destination', 'HomePlanet']
-ohe_vars = ['BowAnomaly', 'CryoSleep', 'LuxuryTrap', 'Side', 'StarboardScrape', 
-            'VIP']
+ohe_vars = ['BowAnomaly', 'CryoSleep', 'StarboardScrape']
 
 # Get all the variables
 all_vars = num_vars + cat_vars + ohe_vars
@@ -370,8 +367,8 @@ pred_probas = opt_stack.predict_proba(titanic_test[all_vars])[:, 1]
 
 # Get the final predictions
 final_preds = utils.apply_spaceship_group_mask(titanic_train, titanic_test, 
-                                               pred_probas, upper = 0.75, 
-                                               lower = 0.25)
+                                               pred_probas, upper = 0.80, 
+                                               lower = 0.2)
 
 # Check portion that servived
 print(final_preds.value_counts(normalize = True))
