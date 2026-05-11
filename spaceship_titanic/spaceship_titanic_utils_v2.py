@@ -502,7 +502,7 @@ def plot_ship_transport_heatmap(df, starboard_state):
     plt.title('Spaceship Titanic: Transport Rate (Color) & Passenger Density % (Text)', 
               fontsize = 16)
     
-    plt.xlabel(f"Cabin Block (Port: 0-{starboard_state - 1:0.0f} | Starboard: {starboard_state:0.0f}-{df['CabinBlock'].max():0.0f}", 
+    plt.xlabel(f"Cabin Block (Port: 0-{starboard_state - 1:0.0f} | Starboard: {starboard_state:0.0f}-{df['CabinBlock'].max():0.0f})", 
                fontsize = 12)
     
     plt.ylabel('Deck', fontsize = 12)
